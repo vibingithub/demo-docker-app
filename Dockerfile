@@ -24,6 +24,7 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
+#For removing windows based line endings in mvnw file
 RUN sed -i -e 's/\r$//' ./mvnw
 RUN ./mvnw package
 ARG JAR_FILE=target/*.jar
