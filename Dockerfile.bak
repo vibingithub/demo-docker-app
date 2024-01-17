@@ -26,8 +26,8 @@ COPY pom.xml .
 COPY src src
 RUN sed -i -e 's/\r$//' ./mvnw
 RUN ./mvnw package
-ARG JAR_FILE=target/*.jar
-RUN cp ${JAR_FILE} application.jar
+ARG JAR_FILE=*/target/*.jar
+COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
 # the second stage of our build will copy the extracted layers
